@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 
 #include <iostream>
+#include <entt.hpp>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {

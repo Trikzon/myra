@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.6)
+cmake_minimum_required(VERSION 3.12.4)
 
 project(myra)
 
 find_package(OpenGL REQUIRED)
 
-include_directories(${OPENGL_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS} "./libs/entt")
 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
@@ -24,4 +24,7 @@ target_link_libraries(myra ${OPENGL_LIBRARIES} glad glfw)
 
 if (MSVC)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT myra)
+    SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} /std:c++latest")
+else()
+    target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 endif()
