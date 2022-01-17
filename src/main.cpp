@@ -17,6 +17,8 @@ void processInput(GLFWwindow *window)
     }
 }
 
+#include "file/file_io.h"
+
 int main()
 {
     if (!glfwInit())

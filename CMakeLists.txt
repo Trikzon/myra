@@ -17,10 +17,13 @@ if (MSVC)
     SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
 endif()
 
-file(GLOB SOURCE_FILES src/*.cpp src/*.h)
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp src/*.h)
 
-add_executable(myra WIN32 ${SOURCE_FILES} src/main.cpp)
+add_executable(myra WIN32 ${SOURCE_FILES})
 target_link_libraries(myra ${OPENGL_LIBRARIES} glad glfw)
+
+add_custom_target(copy_assets COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/scripts/copy_assets.cmake)
+add_dependencies(myra copy_assets)
 
 if (MSVC)
     set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT myra)
