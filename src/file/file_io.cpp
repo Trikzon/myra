@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <optional>
-#include "file_io.h"
+#include "file_io.hpp"
 
 namespace myra {
     std::optional<std::string> readFile(const std::string& filePath) {

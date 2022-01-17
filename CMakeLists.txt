@@ -17,7 +17,7 @@ if (MSVC)
     SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
 endif()
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp src/*.h)
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp src/*.hpp)
 
 add_executable(myra WIN32 ${SOURCE_FILES})
 target_link_libraries(myra ${OPENGL_LIBRARIES} glad glfw)
