@@ -1,15 +1,16 @@
 #include "window.hpp"
 
 #include <exception>
-#include <iostream>
 #include <optional>
 #include <string>
+
+#include "../log.hpp"
 
 namespace myra{
 // public:
     std::optional<Window> Window::create(int width, int height, const std::string& title) {
         if (!glfwInit()) {
-            std::cout << "Failed to initialize GLFW" << std::endl;
+            myra::fatal("Failed to initialize GLFW.");
             return {};
         }
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -19,7 +20,7 @@ namespace myra{
 
         GLFWwindow* windowHandle = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);
         if (windowHandle == NULL) {
-            std::cout << "Failed to create GLFW window" << std::endl;
+            myra::fatal("Failed to create GLFW window.");
             glfwTerminate();
             return {};
         }
@@ -27,7 +28,7 @@ namespace myra{
         Window* window = new Window(windowHandle, width, height);
 
         if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-            std::cout << "Failed to initialize GLAD" << std::endl;
+            myra::fatal("Failed to initialize GLAD.");
             return {};
         }
         glViewport(0, 0, width, height);

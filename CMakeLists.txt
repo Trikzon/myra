@@ -17,7 +17,16 @@ if (MSVC)
     SET(CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:mainCRTStartup")
 endif()
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp src/*.hpp)
+file(
+        GLOB SOURCE_FILES
+        src/main.cpp
+        src/log.cpp src/log.hpp
+        src/file/file_io.cpp src/file/file_io.hpp
+        src/file/parse/parse_util.cpp src/file/parse/parse_util.hpp
+        src/file/parse/shader.cpp src/file/parse/shader.hpp
+        src/render/shader.cpp src/render/shader.hpp
+        src/render/window.cpp src/render/window.hpp
+)
 
 add_executable(myra WIN32 ${SOURCE_FILES})
 target_link_libraries(myra ${OPENGL_LIBRARIES} glad glfw)
